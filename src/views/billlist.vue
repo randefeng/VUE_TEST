@@ -1,5 +1,7 @@
 <template>
   <div>
+    <scroller>
+    
     <masker style="border-radius: 2px;">
       <div class="m-img" ></div>
       <div slot="content" class="m-title">
@@ -69,6 +71,8 @@
 
 
     </group>
+
+    </scroller>
 
   </div>
 </template>

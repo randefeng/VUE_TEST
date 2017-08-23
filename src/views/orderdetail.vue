@@ -1,5 +1,7 @@
 <template>
   <div>
+    <scroller>
+
     <form-preview header-label="订单状态" header-value="未付款|未发货" :body-items="list" :footer-buttons="buttons"></form-preview>
     <br>
     <panel header="" :footer="footer" :list="list1" :type="type"></panel>
@@ -23,6 +25,8 @@
         <span slot="label">确认收款</span>
       </tabbar-item>
     </tabbar>
+
+    </scroller>
   </div>
 </template>
 
