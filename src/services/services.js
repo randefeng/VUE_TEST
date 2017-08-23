@@ -104,6 +104,15 @@ servers.cancelOrder = function (postdata, callback){
     servers._post(url, postdata, callback)
 }
 
+/*
+ * 确认收款
+ */
+servers.confirmOrder = function (postdata, callback){
+    let url = '/api/trade/v1/editStatus';
+    postdata = postdata || {};
+    servers._post(url, postdata, callback)
+}
+
 export default {
   install (Vue) {
     Vue.prototype.$http = axios

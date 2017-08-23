@@ -11,7 +11,10 @@ import Util from './libs/util'
 //import { AjaxPlugin } from 'vux'
 import Services from './services/services'
 import  { ToastPlugin, ConfirmPlugin } from 'vux'
+import VueScroller from 'vue-scroller'
 
+//https://github.com/wangdahoo/vue-scroller
+Vue.use(VueScroller)
 Vue.use(ConfirmPlugin)
 Vue.use(ToastPlugin)
 Vue.use(VueRouter)

@@ -1,9 +1,7 @@
 <template>
     <div class="timeline-demo">
         
-    <scroller 
-      :on-refresh="onRefresh"
-      :on-infinite="onInfinite">
+      <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :dataList="scrollData">
         
         <timeline style="padding-left:3rem;">
             <timeline-item v-for="(item, index) in list1" :key="index">
@@ -80,7 +78,7 @@
         
         
 
-        </scroller>
+        </v-scroll>
 
 
     </div>
@@ -89,7 +87,7 @@
 <script>
 import { Timeline, TimelineItem, XButton, Cell, CellBox, CellFormPreview, Group, Flexbox, FlexboxItem } from 'vux'
 import Util from '../libs/util'
-
+import Scroll from '../components/VScroll'
 
 export default {
   components: {
@@ -101,7 +99,8 @@ export default {
     CellFormPreview, 
     Group,
     Flexbox, 
-    FlexboxItem
+    FlexboxItem,
+    'v-scroll': Scroll
   },
   data () {
     return {
@@ -127,6 +126,9 @@ export default {
         totalPage : 1,
         status: 0,
         payStatus: 0,
+        scrollData:{
+            noFlag: false //暂无更多数据显示
+        }
 
     }
   },
@@ -161,16 +163,6 @@ export default {
                 that.$servers.cancelOrder(postdata, function(data){
                     if(data.status==0){
                         that.$vux.toast.text('取消订单操作成功', 'bottom');
-
-                        //debugger;
-                        let index = _.findIndex(that.list1, function(a){return a.orderCode == orderid;});
-                        if(index>-1){
-                            console.log('delete ', index);
-                            that.list1.splice(index, 1);
-                        }
-
-                        return;
-                        //不重新加载，只执行页面刷新
                         var postdata = {
                             page: that.page,
                             size: that.size,
@@ -188,7 +180,6 @@ export default {
                 
     },
     confirmOrder(orderid, memberId){
-
         var that = this;
         console.log('确认收款')
         console.log(orderid, memberId, typeof orderid);
@@ -215,17 +206,6 @@ export default {
                 that.$servers.confirmOrder(postdata, function(data){
                     if(data.status==0){
                         that.$vux.toast.text('操作成功', 'bottom');
-                        
-
-                        //debugger;
-                        let index = _.findIndex(that.list1, function(a){return a.orderCode == orderid;});
-                        if(index>-1){
-                            console.log('delete ', index);
-                            that.list1.splice(index, 1);
-                        }
-
-                        return;
-                        //不重新加载，只执行页面刷新
                         var postdata = {
                             page: that.page,
                             size: that.size,
@@ -333,6 +313,11 @@ export default {
             if(that.page <= 0){
 
                 that.list1 = tObj;
+                if(!(tObj && tObj.length>0)){
+                    let nullData = that.$el.querySelector('.nullData');
+                    nullData.innerHTML = '暂无数据';
+                    that.scrollData.noFlag = true;
+                }
             }else{
                 that.list1 = that.list1.concat(tObj);
             }
@@ -353,14 +338,16 @@ export default {
             }
         }
         this.getList(postdata);
-        setTimeout(function(){done();}, 500);
+        done(); // call done
     },
     onInfinite(done) {
         this.page++;
+        let more = this.$el.querySelector('.load-more')
+        debugger;
         if(this.page > this.totalPage - 1){
-            setTimeout(function(){
-                done(true);
-            },800);
+            more.style.display = 'none'; //隐藏加载条
+            this.scrollData.noFlag = true;
+            done();
             return;
         }
 
@@ -374,7 +361,8 @@ export default {
             }
         }
         this.getList(postdata, function(){
-            setTimeout(function(){done();}, 500);
+            more.style.display = 'none'; //隐藏加载条
+            done();
         });
         
     }
