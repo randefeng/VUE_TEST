@@ -1,0 +1,53 @@
+.layout-breadcrumb{
+    padding: 10px 15px 0;
+}
+.layout-content{
+    min-height: 200px;
+    margin: 15px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    /*height: 80%;
+    height: calc(100% - 150px); 不起作用？*/
+}
+.layout-content-main{
+    padding: 10px;
+}
+.p-welcome{
+    text-align: center;
+    padding: 0;
+    color: rgb(144, 186, 253);
+    font-size: 24px;
+
+}
+.layout-right-main{
+    height:90%;
+    overflow:auto;
+}
+.layout-header{
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 4px;  /*滚动条宽度*/
+    height: 16px;  /*滚动条高度*/
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
+    border-radius: 10px;  /*滚动条的背景区域的圆角*/
+    background-color: gray;/*滚动条的背景颜色*/  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  /*滚动条的圆角*/
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: white;  /*滚动条的背景颜色*/
+}
