@@ -4,7 +4,7 @@ const routers = [
         meta: {
             title: '经销商首页'
         },
-        component: (resolve) => require(['./views/ordermenu'], resolve),
+        component: (resolve) => require(['./views/aindex'], resolve),
         //component: (resolve) => require(['./components/HelloFromVux'], resolve),
         // children: [
         //     {
@@ -46,6 +46,28 @@ const routers = [
             title: '账单查询'
         },
         component: (resolve) => require(['./views/billlist'], resolve),
+    },
+
+    {
+        path: '/aindex',
+        meta: {
+            title: '账单查询'
+        },
+        component: (resolve) => require(['./views/aindex'], resolve),
+    },
+    {
+        path: '/contentDetail',
+        meta: {
+            title: 'B2B商城订单'
+        },
+        component: (resolve) => require(['./views/contentDetail'], resolve),
+    },
+    {
+        path: '/testTemplate',
+        meta: {
+            title: 'B2B商城订单'
+        },
+        component: (resolve) => require(['./views/tab2Page/testTemplate'], resolve),
     },
 ];
 export default routers;

@@ -12,9 +12,14 @@ import Util from './libs/util'
 import Services from './services/services'
 import  { ToastPlugin, ConfirmPlugin } from 'vux'
 import VueScroller from 'vue-scroller'
-
+//import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import vuePicturePreview from 'vue-picture-preview'
+// Vue.use(vuePicturePreview)
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
 //https://github.com/wangdahoo/vue-scroller
 Vue.use(VueScroller)
+//Vue.use(VueAwesomeSwiper)
 Vue.use(ConfirmPlugin)
 Vue.use(ToastPlugin)
 Vue.use(VueRouter)
