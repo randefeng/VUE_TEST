@@ -5,3 +5,9 @@ https://surmon-china.github.io/vue-awesome-swiper/
 
 https://github.com/wangdahoo/vue-scroller
 https://wangdahoo.github.io/vue-scroller/#/
+
+
+
+npm isntall 
+
+npm run dev 
